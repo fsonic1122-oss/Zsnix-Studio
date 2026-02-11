@@ -22,36 +22,28 @@ body {
     min-height: 100vh;
 }
 
-/* Premium Loader */
+/* Loader */
 #loader {
     position: fixed;
     top:0; left:0; right:0; bottom:0;
-    background: rgba(15,23,42,0.95);
+    background: rgba(15,23,42,0.9);
     display:flex;
     justify-content:center;
     align-items:center;
     z-index:9999;
     transition: opacity 0.5s ease;
 }
-.loader-glass {
-    display: flex;
-    gap: 12px;
-}
-.loader-dot {
-    width: 18px;
-    height: 18px;
+.spinner {
+    border: 5px solid #ccc;
+    border-top: 5px solid #0ea5e9;
     border-radius: 50%;
-    background: linear-gradient(45deg, #0ea5e9, #38bdf8, #06b6d4);
-    animation: bounce 1.2s infinite ease-in-out;
-    box-shadow: 0 0 15px rgba(14,165,233,0.6), 0 0 30px rgba(14,165,233,0.3);
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
 }
-.loader-dot:nth-child(1) { animation-delay: 0s; }
-.loader-dot:nth-child(2) { animation-delay: 0.2s; }
-.loader-dot:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes bounce {
-    0%, 80%, 100% { transform: scale(0); }
-    40% { transform: scale(1); }
+@keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
 }
 
 /* Text Glow */
@@ -116,17 +108,14 @@ body {
 
 /* Scrollbar hide */
 .scroll-hide::-webkit-scrollbar { display: none; }
+
 </style>
 </head>
 <body class="p-6 max-w-md mx-auto" id="main-body">
 
-<!-- Premium Loader -->
+<!-- Loader -->
 <div id="loader">
-    <div class="loader-glass">
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-        <div class="loader-dot"></div>
-    </div>
+    <div class="spinner"></div>
 </div>
 
 <!-- Header -->
@@ -186,18 +175,100 @@ body {
 <div class="h-10"></div>
 
 <script>
-const prices = { /* same as before */ mlbb:{color:'#0ea5e9',data:[{v:'Weekly Pass (1x)',p:'5500'},{v:'Weekly Pass (2x)',p:'11000'},{v:'86 Diamonds',p:'4200'},{v:'172 Diamonds',p:'8400'},{v:'257 Diamonds',p:'12500'},{v:'344 Diamonds',p:'16800'},{v:'429 Diamonds',p:'21000'},{v:'514 Diamonds',p:'25000'},{v:'706 Diamonds',p:'34000'},{v:'878 Diamonds',p:'42500'},{v:'1050 Diamonds',p:'50000'},{v:'1412 Diamonds',p:'68000'},{v:'2195 Diamonds',p:'105000'}]},heartopia:{color:'#f43f5e',data:[{v:'60 Hearts',p:'1200'},{v:'300 Hearts',p:'5500'},{v:'680 Hearts',p:'12000'},{v:'1280 Hearts',p:'22500'},{v:'1980 Hearts',p:'34000'},{v:'3280 Hearts',p:'56000'},{v:'6480 Hearts',p:'110000'}]},pubg:{color:'#10b981',data:[{v:'60 UC',p:'3200'},{v:'325 UC',p:'15500'},{v:'660 UC',p:'29000'},{v:'1800 UC',p:'75000'},{v:'3850 UC',p:'150000'},{v:'8100 UC',p:'285000'}]},tg_prem:{color:'#a855f7',data:[{v:'1 Month',p:'12500'},{v:'3 Months',p:'35000'},{v:'6 Months',p:'65000'},{v:'1 Year',p:'120000'}]},tg_star:{color:'#f59e0b',data:[{v:'50 Stars',p:'3500'},{v:'100 Stars',p:'6800'},{v:'250 Stars',p:'16500'},{v:'500 Stars',p:'32000'},{v:'1000 Stars',p:'63000'}]},mcgg:{color:'#3b82f6',data:[{v:'100 Cash',p:'2500'},{v:'200 Cash',p:'4800'},{v:'500 Cash',p:'11500'},{v:'1000 Cash',p:'22000'},{v:'2000 Cash',p:'43000'}]}};
+const prices = {
+    mlbb: { color: '#0ea5e9', data: [
+        {v:'Weekly Pass (1x)',p:'5500'},{v:'Weekly Pass (2x)',p:'11000'},
+        {v:'86 Diamonds',p:'4200'},{v:'172 Diamonds',p:'8400'},{v:'257 Diamonds',p:'12500'},
+        {v:'344 Diamonds',p:'16800'},{v:'429 Diamonds',p:'21000'},{v:'514 Diamonds',p:'25000'},
+        {v:'706 Diamonds',p:'34000'},{v:'878 Diamonds',p:'42500'},{v:'1050 Diamonds',p:'50000'},
+        {v:'1412 Diamonds',p:'68000'},{v:'2195 Diamonds',p:'105000'}
+    ]},
+    heartopia: { color: '#f43f5e', data: [
+        {v:'60 Hearts',p:'1200'},{v:'300 Hearts',p:'5500'},{v:'680 Hearts',p:'12000'},
+        {v:'1280 Hearts',p:'22500'},{v:'1980 Hearts',p:'34000'},{v:'3280 Hearts',p:'56000'},
+        {v:'6480 Hearts',p:'110000'}
+    ]},
+    pubg: { color: '#10b981', data: [
+        {v:'60 UC',p:'3200'},{v:'325 UC',p:'15500'},{v:'660 UC',p:'29000'},
+        {v:'1800 UC',p:'75000'},{v:'3850 UC',p:'150000'},{v:'8100 UC',p:'285000'}
+    ]},
+    tg_prem: { color: '#a855f7', data: [
+        {v:'1 Month',p:'12500'},{v:'3 Months',p:'35000'},
+        {v:'6 Months',p:'65000'},{v:'1 Year',p:'120000'}
+    ]},
+    tg_star: { color: '#f59e0b', data: [
+        {v:'50 Stars',p:'3500'},{v:'100 Stars',p:'6800'},
+        {v:'250 Stars',p:'16500'},{v:'500 Stars',p:'32000'},
+        {v:'1000 Stars',p:'63000'}
+    ]},
+    mcgg: { color: '#3b82f6', data: [
+        {v:'100 Cash',p:'2500'},{v:'200 Cash',p:'4800'},
+        {v:'500 Cash',p:'11500'},{v:'1000 Cash',p:'22000'},
+        {v:'2000 Cash',p:'43000'}
+    ]}
+};
 
-let currentGame='mlbb';
-function switchTab(game){ /* same as before */ }
-function order(){ /* same as before */ }
+let currentGame = 'mlbb';
+
+function switchTab(game) {
+    currentGame = game;
+    const themeColor = prices[game].color;
+    document.getElementById('main-body').style.backgroundColor = themeColor + '66'; 
+    
+    document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active-tab');
+        b.style.backgroundColor = 'rgba(15, 23, 42, 0.85)';
+        b.style.borderColor = 'rgba(255,255,255,0.1)';
+    });
+    const activeBtn = document.getElementById('btn-' + game);
+    activeBtn.classList.add('active-tab');
+    activeBtn.style.backgroundColor = themeColor;
+    activeBtn.style.borderColor = 'rgba(255,255,255,0.4)';
+
+    document.getElementById('display-title').innerText = game.replace('_',' ');
+    document.getElementById('indicator').style.backgroundColor = themeColor;
+    document.getElementById('main-btn').style.backgroundColor = themeColor;
+    document.getElementById('main-btn').style.boxShadow = `0 10px 30px ${themeColor}66`;
+
+    document.getElementById('mlbb-inputs').classList.toggle('hidden', game !== 'mlbb');
+    document.getElementById('other-inputs').classList.toggle('hidden', game === 'mlbb');
+
+    const list = document.getElementById('price-list');
+    const select = document.getElementById('item-select');
+    list.innerHTML = ''; select.innerHTML = '';
+
+    prices[game].data.forEach(item => {
+        list.innerHTML += `
+            <div class="price-row flex justify-between items-center">
+                <span class="text-[15px] text-white font-semibold text-glow">${item.v}</span>
+                <div class="flex items-center gap-4">
+                    <span class="font-bold text-[15px]" style="color: white; text-shadow: 0 0 10px ${themeColor}">${item.p} Ks</span>
+                    <button onclick="document.getElementById('item-select').value='${item.v} - ${item.p} Ks'" class="px-3 py-1 rounded-lg font-bold text-[10px] uppercase border" style="color: white; border-color: ${themeColor}; background: ${themeColor}33">GET</button>
+                </div>
+            </div>`;
+        select.innerHTML += `<option value="${item.v} - ${item.p} Ks">${item.v} - ${item.p} Ks</option>`;
+    });
+}
+
+function order() {
+    let idInfo = currentGame === 'mlbb' 
+        ? `${document.getElementById('id-main').value} (${document.getElementById('id-sub').value})`
+        : document.getElementById('id-gen').value;
+
+    if(!idInfo || idInfo.includes('()')) return alert("ID အချက်အလက်ဖြည့်ပါ");
+    const item = document.getElementById('item-select').value;
+    const msg = `🔔 *NEW ORDER*%0A🎮 Game: ${currentGame.toUpperCase()}%0A🆔 ID: ${idInfo}%0A💎 Item: ${item}`;
+    fetch(`https://api.telegram.org/bot8320861096:AAHW1eH2C1cYZ97I0WfQx5b2CpQBH6dX75U/sendMessage?chat_id=6686007389&text=${msg}&parse_mode=Markdown`);
+    window.location.href = `https://t.me/Zsnix_Rix?text=${msg}`;
+}
 
 /* Loader fade out */
-window.addEventListener('load',()=>{
-    const loader=document.getElementById('loader');
-    loader.style.opacity='0';
-    setTimeout(()=>loader.style.display='none',500);
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    loader.style.opacity = '0';
+    setTimeout(() => loader.style.display='none', 500);
 });
+
 switchTab('mlbb');
 </script>
 </body>
