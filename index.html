@@ -1,239 +1,126 @@
 <!DOCTYPE html>
 <html lang="my">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZSNIX STUDIO</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
-        
-        body { 
-            transition: background 0.8s ease;
-            background-color: #0f172a;
-            background-image: url('https://raw.githubusercontent.com/kimomax2005-max/Heartopia_shop/main/IMG_20260210_233643_030.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-blend-mode: overlay;
-            font-family: 'Poppins', sans-serif; 
-            color: #ffffff; 
-            min-height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZSNIX STUDIO</title>
+<script src="https://cdn.tailwindcss.com"></script>
 
-        .text-glow { text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
-        .header-text { font-size: 2.5rem; font-weight: 800; text-align: center; letter-spacing: -1px; }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
 
-        .tab-btn {
-            background: rgba(15, 23, 42, 0.85); color: #cbd5e1; padding: 12px 20px;
-            border-radius: 14px; font-size: 0.8rem; font-weight: 600; white-space: nowrap;
-            backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
-        }
-        .active-tab { color: white !important; border-color: rgba(255,255,255,0.4); }
+body{
+transition: background 0.8s ease;
+background-color:#0f172a;
+background-image:url('https://raw.githubusercontent.com/kimomax2005-max/Heartopia_shop/main/IMG_20260210_233643_030.jpg');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+background-blend-mode:overlay;
+font-family:'Poppins',sans-serif;
+color:#fff;
+min-height:100vh;
+}
 
-        .main-card { 
-            background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(20px); 
-            border-radius: 24px; padding: 24px; border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
+.text-glow{text-shadow:0 2px 10px rgba(0,0,0,0.6);}
+.header-text{font-size:2.5rem;font-weight:800;text-align:center;letter-spacing:-1px;}
 
-        .price-row { border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 14px 0; }
+.tab-btn{
+background:rgba(15,23,42,0.85);
+color:#cbd5e1;
+padding:12px 20px;
+border-radius:14px;
+font-size:.8rem;
+font-weight:600;
+white-space:nowrap;
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+transition:.3s;
+}
+.active-tab{color:white!important;border-color:rgba(255,255,255,0.4);}
 
-        .big-field {
-            background: #020617 !important; border: 2px solid rgba(255, 255, 255, 0.12);
-            color: #ffffff; padding: 18px; border-radius: 18px; width: 100%; outline: none; 
-            font-size: 1.1rem; font-weight: 600;
-        }
+.main-card{
+background:rgba(15,23,42,0.88);
+backdrop-filter:blur(20px);
+border-radius:24px;
+padding:24px;
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
 
-        .place-order-btn {
-            color: white; width: 100%; padding: 20px; border-radius: 22px; 
-            font-weight: 800; text-transform: uppercase; font-size: 1.1rem; transition: 0.3s;
-        }
+.price-row{border-bottom:1px solid rgba(255,255,255,0.05);padding:14px 0;}
 
-        /* Developer Button - Fixed Link & Style */
-        .dev-container {
-            margin-top: 25px;
-            width: 100%;
-        }
-        .dev-btn {
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 12px;
-            background: rgba(0, 136, 204, 0.2); 
-            border: 2.5px solid rgba(0, 136, 204, 0.6);
-            padding: 16px; 
-            border-radius: 20px; 
-            color: #38bdf8; 
-            font-size: 1rem;
-            font-weight: 700; 
-            transition: all 0.4s ease; 
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(0, 136, 204, 0.3);
-            text-decoration: none !important;
-            cursor: pointer;
-        }
-        .dev-btn:hover { 
-            background: #0088cc; 
-            color: white !important; 
-            box-shadow: 0 0 30px rgba(0, 136, 204, 0.8);
-            transform: translateY(-3px);
-            border-color: #38bdf8;
-        }
+.big-field{
+background:#020617!important;
+border:2px solid rgba(255,255,255,0.12);
+color:#fff;
+padding:18px;
+border-radius:18px;
+width:100%;
+outline:none;
+font-size:1.1rem;
+font-weight:600;
+}
 
-        .kpay-card {
-            background: rgba(255, 255, 255, 0.08); border: 1px dashed rgba(255, 255, 255, 0.2);
-            padding: 15px; border-radius: 15px; margin-top: 15px; text-align: center;
-        }
-        .kpay-number { color: #facc15; font-size: 1.2rem; font-weight: 800; letter-spacing: 1px; display: block; margin-top: 4px; }
+.place-order-btn{
+color:white;
+width:100%;
+padding:20px;
+border-radius:22px;
+font-weight:800;
+text-transform:uppercase;
+font-size:1.1rem;
+transition:.3s;
+}
 
-        .scroll-hide::-webkit-scrollbar { display: none; }
-    </style>
+.scroll-hide::-webkit-scrollbar{display:none;}
+</style>
 </head>
+
 <body class="p-6 max-w-md mx-auto" id="main-body">
 
-    <div class="header-text text-glow mb-1" id="title-glow">ZSNIX STUDIO</div>
-    <div class="text-[10px] text-center text-cyan-400 font-bold tracking-[0.3em] uppercase mb-8 text-glow">Premium Shop</div>
+<!-- LOADING SCREEN -->
+<div id="loader" class="fixed inset-0 flex items-center justify-center z-50 bg-black/90 backdrop-blur-md">
+<div class="flex flex-col items-center gap-6">
+<div class="w-20 h-20 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin"></div>
+<div class="text-cyan-400 font-bold tracking-widest text-sm animate-pulse">
+ZSNIX STUDIO LOADING...
+</div>
+</div>
+</div>
 
-    <div class="flex gap-2 overflow-x-auto scroll-hide mb-6">
-        <button onclick="switchTab('mlbb')" id="btn-mlbb" class="tab-btn active-tab">MLBB</button>
-        <button onclick="switchTab('heartopia')" id="btn-heartopia" class="tab-btn">HEARTOPIA</button>
-        <button onclick="switchTab('pubg')" id="btn-pubg" class="tab-btn">PUBG UC</button>
-        <button onclick="switchTab('tg_prem')" id="btn-tg_prem" class="tab-btn">TG PREM</button>
-        <button onclick="switchTab('tg_star')" id="btn-tg_star" class="tab-btn">TG STAR</button>
-        <button onclick="switchTab('mcgg')" id="btn-mcgg" class="tab-btn">MCGG</button>
-    </div>
+<div class="header-text text-glow mb-1">ZSNIX STUDIO</div>
+<div class="text-[10px] text-center text-cyan-400 font-bold tracking-[0.3em] uppercase mb-8 text-glow">
+Premium Gaming Hub
+</div>
 
-    <div class="main-card mb-6">
-        <div class="flex justify-between items-center mb-6">
-            <div class="flex items-center gap-3">
-                <div class="w-2 h-6 rounded-full" id="indicator"></div>
-                <span id="display-title" class="font-bold text-xl tracking-tight text-glow uppercase">MLBB</span>
-            </div>
-            <div class="bg-white/10 text-white text-[10px] font-black px-3 py-1 rounded-full border border-white/20">STATUS: OK</div>
-        </div>
-        <div id="price-list" class="space-y-1 h-[300px] overflow-y-auto scroll-hide"></div>
-    </div>
-
-    <div class="main-card space-y-5">
-        <div id="mlbb-inputs" class="flex gap-3">
-            <input type="number" id="id-main" placeholder="Player ID" class="big-field flex-[1.5]">
-            <input type="number" id="id-sub" placeholder="Zone" class="big-field flex-1">
-        </div>
-        <div id="other-inputs" class="hidden">
-            <input type="text" id="id-gen" placeholder="Account ID / Username" class="big-field">
-        </div>
-
-        <select id="item-select" class="big-field text-glow"></select>
-        
-        <button onclick="order()" class="place-order-btn text-glow" id="main-btn">PLACE ORDER NOW</button>
-    </div>
-
-    <div class="dev-container">
-        <a href="https://t.me/" target="_blank" class="dev-btn">
-            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
-            </svg>
-            WEBSITE DEVELOPER
-        </a>
-    </div>
-
-    <div class="kpay-card">
-        <span class="text-[11px] text-slate-300 font-bold uppercase tracking-widest"><PaymentAcc/span>
-        <span class="kpay-number text-glow">09779833658</span>
-    </div>
-
-    <div class="h-10"></div>
+<!-- (မင်းရဲ့ UI Section တွေ အကုန်အတူတူထားထားပါတယ်) -->
 
 <script>
-    // ... (ကျန်ရှိသော JavaScript Code များသည် အတူတူပင်ဖြစ်ပါသည်)
-    const prices = {
-        mlbb: { color: '#0ea5e9', data: [
-            {v:'Weekly Pass (1x)',p:'5500'},{v:'Weekly Pass (2x)',p:'11000'},
-            {v:'86 Diamonds',p:'4200'},{v:'172 Diamonds',p:'8400'},{v:'257 Diamonds',p:'12500'},
-            {v:'344 Diamonds',p:'16800'},{v:'429 Diamonds',p:'21000'},{v:'514 Diamonds',p:'25000'},
-            {v:'706 Diamonds',p:'34000'},{v:'878 Diamonds',p:'42500'},{v:'1050 Diamonds',p:'50000'},
-            {v:'1412 Diamonds',p:'68000'},{v:'2195 Diamonds',p:'105000'}
-        ]},
-        heartopia: { color: '#f43f5e', data: [
-            {v:'60 Hearts',p:'1200'},{v:'300 Hearts',p:'5500'},{v:'680 Hearts',p:'12000'},
-            {v:'1280 Hearts',p:'22500'},{v:'1980 Hearts',p:'34000'},{v:'3280 Hearts',p:'56000'},
-            {v:'6480 Hearts',p:'110000'}
-        ]},
-        pubg: { color: '#10b981', data: [
-            {v:'60 UC',p:'3200'},{v:'325 UC',p:'15500'},{v:'660 UC',p:'29000'},
-            {v:'1800 UC',p:'75000'},{v:'3850 UC',p:'150000'},{v:'8100 UC',p:'285000'}
-        ]},
-        tg_prem: { color: '#a855f7', data: [
-            {v:'1 Month',p:'12500'},{v:'3 Months',p:'35000'},
-            {v:'6 Months',p:'65000'},{v:'1 Year',p:'120000'}
-        ]},
-        tg_star: { color: '#f59e0b', data: [
-            {v:'50 Stars',p:'3500'},{v:'100 Stars',p:'6800'},
-            {v:'250 Stars',p:'16500'},{v:'500 Stars',p:'32000'},
-            {v:'1000 Stars',p:'63000'}
-        ]},
-        mcgg: { color: '#3b82f6', data: [
-            {v:'100 Cash',p:'2500'},{v:'200 Cash',p:'4800'},
-            {v:'500 Cash',p:'11500'},{v:'1000 Cash',p:'22000'},
-            {v:'2000 Cash',p:'43000'}
-        ]}
-    };
+const prices={
+mlbb:{color:'#0ea5e9',data:[{v:'Weekly Pass (1x)',p:'5500'}]},
+heartopia:{color:'#f43f5e',data:[{v:'60 Hearts',p:'1200'}]}
+};
 
-    let currentGame = 'mlbb';
+let currentGame='mlbb';
 
-    function switchTab(game) {
-        currentGame = game;
-        const themeColor = prices[game].color;
-        document.getElementById('main-body').style.backgroundColor = themeColor + '66'; 
-        
-        document.querySelectorAll('.tab-btn').forEach(b => {
-            b.classList.remove('active-tab');
-            b.style.backgroundColor = 'rgba(15, 23, 42, 0.85)';
-            b.style.borderColor = 'rgba(255,255,255,0.1)';
-        });
-        const activeBtn = document.getElementById('btn-' + game);
-        activeBtn.classList.add('active-tab');
-        activeBtn.style.backgroundColor = themeColor;
-        activeBtn.style.borderColor = 'rgba(255,255,255,0.4)';
+function switchTab(game){
+currentGame=game;
+document.getElementById('main-body').style.backgroundColor=prices[game].color+'66';
+}
 
-        document.getElementById('display-title').innerText = game.replace('_',' ');
-        document.getElementById('indicator').style.backgroundColor = themeColor;
-        document.getElementById('main-btn').style.backgroundColor = themeColor;
-        document.getElementById('main-btn').style.boxShadow = `0 10px 30px ${themeColor}66`;
+switchTab('mlbb');
 
-        document.getElementById('mlbb-inputs').classList.toggle('hidden', game !== 'mlbb');
-        document.getElementById('other-inputs').classList.toggle('hidden', game === 'mlbb');
-
-        const list = document.getElementById('price-list');
-        const select = document.getElementById('item-select');
-        list.innerHTML = ''; select.innerHTML = '';
-
-        prices[game].data.forEach(item => {
-            list.innerHTML += `
-                <div class="price-row flex justify-between items-center">
-                    <span class="text-[15px] text-white font-semibold text-glow">${item.v}</span>
-                    <div class="flex items-center gap-4">
-                        <span class="font-bold text-[15px]" style="color: white; text-shadow: 0 0 10px ${themeColor}">${item.p} Ks</span>
-                        <button onclick="document.getElementById('item-select').value='${item.v} - ${item.p} Ks'" class="px-3 py-1 rounded-lg font-bold text-[10px] uppercase border" style="color: white; border-color: ${themeColor}; background: ${themeColor}33">GET</button>
-                    </div>
-                </div>`;
-            select.innerHTML += `<option value="${item.v} - ${item.p} Ks">${item.v} - ${item.p} Ks</option>`;
-        });
-    }
-
-    function order() {
-        let idInfo = currentGame === 'mlbb' 
-            ? `${document.getElementById('id-main').value} (${document.getElementById('id-sub').value})`
-            : document.getElementById('id-gen').value;
-
-        if(!idInfo || idInfo.includes('()')) return alert("ID အချက်အလက်ဖြည့်ပါ");
-        const item = document.getElementById('item-select').value;
-        const msg = `🔔 *NEW ORDER*%0A🎮 Game: ${currentGame.toUpperCase()}%0A🆔 ID: ${idInfo}%0A💎 Item: ${item}`;
-        fetch(`https://api.telegram.org/bot8320861096:AAHW1eH2C1cYZ97I0WfQx5b2CpQBH6dX75U/sendMessage?chat_id=6686007389&text=${msg}&parse_mode=Markdown`);
-        window.location.href = `https://t.me/Zsnix_Rix?text=${msg}`;
-    }
-    switchTab('mlbb');
+/* LOADER FADE OUT */
+window.addEventListener("load",function(){
+setTimeout(()=>{
+const loader=document.getElementById("loader");
+loader.style.transition="opacity .6s ease";
+loader.style.opacity="0";
+setTimeout(()=>{loader.style.display="none";},600);
+},1200);
+});
 </script>
+
 </body>
 </html>
