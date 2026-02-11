@@ -29,7 +29,7 @@
             border-radius: 14px; font-size: 0.8rem; font-weight: 600; white-space: nowrap;
             backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); transition: 0.3s;
         }
-        .active-tab { color: white !important; border-color: rgba(255,255,255,0.5); }
+        .active-tab { color: white !important; border-color: rgba(255,255,255,0.4); }
 
         .main-card { 
             background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(20px); 
@@ -50,35 +50,42 @@
             font-weight: 800; text-transform: uppercase; font-size: 1.1rem; transition: 0.3s;
         }
 
-        /* Developer Button - ပိုပေါ်လွင်အောင် Telegram Blue Glow သုံးထားသည် */
+        /* Developer Button - Fixed Link & Style */
+        .dev-container {
+            margin-top: 25px;
+            width: 100%;
+        }
         .dev-btn {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: rgba(0, 136, 204, 0.15); 
-            border: 2px solid rgba(0, 136, 204, 0.5);
-            padding: 15px; border-radius: 20px; 
-            color: #0088cc; font-size: 0.9rem;
-            font-weight: 700; margin-top: 25px; transition: 0.4s; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px;
+            background: rgba(0, 136, 204, 0.2); 
+            border: 2.5px solid rgba(0, 136, 204, 0.6);
+            padding: 16px; 
+            border-radius: 20px; 
+            color: #38bdf8; 
+            font-size: 1rem;
+            font-weight: 700; 
+            transition: all 0.4s ease; 
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 15px rgba(0, 136, 204, 0.2);
+            box-shadow: 0 0 20px rgba(0, 136, 204, 0.3);
+            text-decoration: none !important;
+            cursor: pointer;
         }
         .dev-btn:hover { 
-            background: #0088cc; color: white; 
-            box-shadow: 0 0 25px rgba(0, 136, 204, 0.6);
-            transform: translateY(-2px);
+            background: #0088cc; 
+            color: white !important; 
+            box-shadow: 0 0 30px rgba(0, 136, 204, 0.8);
+            transform: translateY(-3px);
+            border-color: #38bdf8;
         }
 
-        /* KPay Info - အကွက်လေးနဲ့ ပိုပေါ်အောင် လုပ်ထားသည် */
         .kpay-card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            padding: 12px; border-radius: 15px;
-            margin-top: 15px; text-align: center;
+            background: rgba(255, 255, 255, 0.08); border: 1px dashed rgba(255, 255, 255, 0.2);
+            padding: 15px; border-radius: 15px; margin-top: 15px; text-align: center;
         }
-        .kpay-number {
-            color: #facc15; /* Yellow for visibility */
-            font-size: 1.1rem; font-weight: 800;
-            letter-spacing: 1px; display: block;
-        }
+        .kpay-number { color: #facc15; font-size: 1.2rem; font-weight: 800; letter-spacing: 1px; display: block; margin-top: 4px; }
 
         .scroll-hide::-webkit-scrollbar { display: none; }
     </style>
@@ -105,7 +112,7 @@
             </div>
             <div class="bg-white/10 text-white text-[10px] font-black px-3 py-1 rounded-full border border-white/20">STATUS: OK</div>
         </div>
-        <div id="price-list" class="space-y-1"></div>
+        <div id="price-list" class="space-y-1 h-[300px] overflow-y-auto scroll-hide"></div>
     </div>
 
     <div class="main-card space-y-5">
@@ -122,26 +129,55 @@
         <button onclick="order()" class="place-order-btn text-glow" id="main-btn">PLACE ORDER NOW</button>
     </div>
 
-    <a href="https://t.me/" target="_blank" class="dev-btn">
-        <svg style="width:20px;height:20px" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
-        </svg>
-        WEBSITE DEVELOPER
-    </a>
-
-    <div class="kpay-card">
-        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">KBZPay Account</span>
-        <span class="Kpay/Wave ငွေလွှဲနံပတ် ">09779833658</span>
+    <div class="dev-container">
+        <a href="https://t.me/" target="_blank" class="dev-btn">
+            <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+            </svg>
+            WEBSITE DEVELOPER
+        </a>
     </div>
 
-    <div class="h-10"></div> <script>
+    <div class="kpay-card">
+        <span class="text-[11px] text-slate-300 font-bold uppercase tracking-widest"><PaymentAcc/span>
+        <span class="kpay-number text-glow">09779833658</span>
+    </div>
+
+    <div class="h-10"></div>
+
+<script>
+    // ... (ကျန်ရှိသော JavaScript Code များသည် အတူတူပင်ဖြစ်ပါသည်)
     const prices = {
-        mlbb: { color: '#0ea5e9', data: [{v:'Weekly Pass',p:'5500'},{v:'86 Diamonds',p:'4200'},{v:'172 Diamonds',p:'8400'}] },
-        heartopia: { color: '#f43f5e', data: [{v:'60 Hearts',p:'1200'},{v:'300 Hearts',p:'5500'},{v:'680 Hearts',p:'12000'}] },
-        pubg: { color: '#10b981', data: [{v:'60 UC',p:'3200'},{v:'325 UC',p:'15500'},{v:'660 UC',p:'29000'}] },
-        tg_prem: { color: '#a855f7', data: [{v:'1 Month',p:'12500'},{v:'1 Year',p:'120000'}] },
-        tg_star: { color: '#f59e0b', data: [{v:'50 Stars',p:'3500'},{v:'100 Stars',p:'6800'}] },
-        mcgg: { color: '#3b82f6', data: [{v:'100 Cash',p:'2500'},{v:'500 Cash',p:'11500'}] }
+        mlbb: { color: '#0ea5e9', data: [
+            {v:'Weekly Pass (1x)',p:'5500'},{v:'Weekly Pass (2x)',p:'11000'},
+            {v:'86 Diamonds',p:'4200'},{v:'172 Diamonds',p:'8400'},{v:'257 Diamonds',p:'12500'},
+            {v:'344 Diamonds',p:'16800'},{v:'429 Diamonds',p:'21000'},{v:'514 Diamonds',p:'25000'},
+            {v:'706 Diamonds',p:'34000'},{v:'878 Diamonds',p:'42500'},{v:'1050 Diamonds',p:'50000'},
+            {v:'1412 Diamonds',p:'68000'},{v:'2195 Diamonds',p:'105000'}
+        ]},
+        heartopia: { color: '#f43f5e', data: [
+            {v:'60 Hearts',p:'1200'},{v:'300 Hearts',p:'5500'},{v:'680 Hearts',p:'12000'},
+            {v:'1280 Hearts',p:'22500'},{v:'1980 Hearts',p:'34000'},{v:'3280 Hearts',p:'56000'},
+            {v:'6480 Hearts',p:'110000'}
+        ]},
+        pubg: { color: '#10b981', data: [
+            {v:'60 UC',p:'3200'},{v:'325 UC',p:'15500'},{v:'660 UC',p:'29000'},
+            {v:'1800 UC',p:'75000'},{v:'3850 UC',p:'150000'},{v:'8100 UC',p:'285000'}
+        ]},
+        tg_prem: { color: '#a855f7', data: [
+            {v:'1 Month',p:'12500'},{v:'3 Months',p:'35000'},
+            {v:'6 Months',p:'65000'},{v:'1 Year',p:'120000'}
+        ]},
+        tg_star: { color: '#f59e0b', data: [
+            {v:'50 Stars',p:'3500'},{v:'100 Stars',p:'6800'},
+            {v:'250 Stars',p:'16500'},{v:'500 Stars',p:'32000'},
+            {v:'1000 Stars',p:'63000'}
+        ]},
+        mcgg: { color: '#3b82f6', data: [
+            {v:'100 Cash',p:'2500'},{v:'200 Cash',p:'4800'},
+            {v:'500 Cash',p:'11500'},{v:'1000 Cash',p:'22000'},
+            {v:'2000 Cash',p:'43000'}
+        ]}
     };
 
     let currentGame = 'mlbb';
