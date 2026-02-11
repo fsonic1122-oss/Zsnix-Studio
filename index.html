@@ -10,7 +10,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
 
 body{
-transition: background 0.8s ease;
+transition:background 0.8s ease;
 background-color:#0f172a;
 background-image:url('https://raw.githubusercontent.com/kimomax2005-max/Heartopia_shop/main/IMG_20260210_233643_030.jpg');
 background-size:cover;
@@ -73,6 +73,31 @@ font-size:1.1rem;
 transition:.3s;
 }
 
+.dev-container{margin-top:25px;width:100%;}
+.dev-btn{
+display:flex;align-items:center;justify-content:center;gap:12px;
+background:rgba(0,136,204,0.2);
+border:2.5px solid rgba(0,136,204,0.6);
+padding:16px;border-radius:20px;color:#38bdf8;
+font-size:1rem;font-weight:700;transition:.4s;
+backdrop-filter:blur(10px);
+box-shadow:0 0 20px rgba(0,136,204,0.3);
+text-decoration:none!important;cursor:pointer;
+}
+.dev-btn:hover{
+background:#0088cc;color:#fff!important;
+box-shadow:0 0 30px rgba(0,136,204,0.8);
+transform:translateY(-3px);
+border-color:#38bdf8;
+}
+
+.kpay-card{
+background:rgba(255,255,255,0.08);
+border:1px dashed rgba(255,255,255,0.2);
+padding:15px;border-radius:15px;margin-top:15px;text-align:center;
+}
+.kpay-number{color:#facc15;font-size:1.2rem;font-weight:800;letter-spacing:1px;display:block;margin-top:4px;}
+
 .scroll-hide::-webkit-scrollbar{display:none;}
 </style>
 </head>
@@ -91,22 +116,52 @@ ZSNIX STUDIO LOADING...
 
 <div class="header-text text-glow mb-1">ZSNIX STUDIO</div>
 <div class="text-[10px] text-center text-cyan-400 font-bold tracking-[0.3em] uppercase mb-8 text-glow">
-Premium Gaming
+Premium Gaming Hub
 </div>
 
-<!-- (မင်းရဲ့ UI Section တွေ အကုန်အတူတူထားထားပါတယ်) -->
+<div class="flex gap-2 overflow-x-auto scroll-hide mb-6">
+<button onclick="switchTab('mlbb')" id="btn-mlbb" class="tab-btn active-tab">MLBB</button>
+<button onclick="switchTab('heartopia')" id="btn-heartopia" class="tab-btn">HEARTOPIA</button>
+<button onclick="switchTab('pubg')" id="btn-pubg" class="tab-btn">PUBG UC</button>
+<button onclick="switchTab('tg_prem')" id="btn-tg_prem" class="tab-btn">TG PREM</button>
+<button onclick="switchTab('tg_star')" id="btn-tg_star" class="tab-btn">TG STAR</button>
+<button onclick="switchTab('mcgg')" id="btn-mcgg" class="tab-btn">MCGG</button>
+</div>
+
+<div class="main-card mb-6">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-3">
+<div class="w-2 h-6 rounded-full" id="indicator"></div>
+<span id="display-title" class="font-bold text-xl tracking-tight text-glow uppercase">MLBB</span>
+</div>
+<div class="bg-white/10 text-white text-[10px] font-black px-3 py-1 rounded-full border border-white/20">STATUS: OK</div>
+</div>
+<div id="price-list" class="space-y-1 h-[300px] overflow-y-auto scroll-hide"></div>
+</div>
+
+<div class="main-card space-y-5">
+<div id="mlbb-inputs" class="flex gap-3">
+<input type="number" id="id-main" placeholder="Player ID" class="big-field flex-[1.5]">
+<input type="number" id="id-sub" placeholder="Zone" class="big-field flex-1">
+</div>
+<div id="other-inputs" class="hidden">
+<input type="text" id="id-gen" placeholder="Account ID / Username" class="big-field">
+</div>
+
+<select id="item-select" class="big-field text-glow"></select>
+<button onclick="order()" class="place-order-btn text-glow" id="main-btn">PLACE ORDER NOW</button>
+</div>
+
+<div class="h-10"></div>
 
 <script>
-const prices={
-mlbb:{color:'#0ea5e9',data:[{v:'Weekly Pass (1x)',p:'5500'}]},
-heartopia:{color:'#f43f5e',data:[{v:'60 Hearts',p:'1200'}]}
-};
-
+const prices={mlbb:{color:'#0ea5e9',data:[{v:'Weekly Pass (1x)',p:'5500'},{v:'Weekly Pass (2x)',p:'11000'}]}};
 let currentGame='mlbb';
 
 function switchTab(game){
 currentGame=game;
-document.getElementById('main-body').style.backgroundColor=prices[game].color+'66';
+const themeColor=prices[game].color;
+document.getElementById('main-body').style.backgroundColor=themeColor+'66';
 }
 
 switchTab('mlbb');
