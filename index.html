@@ -63,40 +63,9 @@ font-weight:600;
 }
 
 .place-order-btn{
-color:white;
-width:100%;
-padding:20px;
-border-radius:22px;
-font-weight:800;
-text-transform:uppercase;
-font-size:1.1rem;
-transition:.3s;
+color:white;width:100%;padding:20px;border-radius:22px;
+font-weight:800;text-transform:uppercase;font-size:1.1rem;transition:.3s;
 }
-
-.dev-container{margin-top:25px;width:100%;}
-.dev-btn{
-display:flex;align-items:center;justify-content:center;gap:12px;
-background:rgba(0,136,204,0.2);
-border:2.5px solid rgba(0,136,204,0.6);
-padding:16px;border-radius:20px;color:#38bdf8;
-font-size:1rem;font-weight:700;transition:.4s;
-backdrop-filter:blur(10px);
-box-shadow:0 0 20px rgba(0,136,204,0.3);
-text-decoration:none!important;cursor:pointer;
-}
-.dev-btn:hover{
-background:#0088cc;color:#fff!important;
-box-shadow:0 0 30px rgba(0,136,204,0.8);
-transform:translateY(-3px);
-border-color:#38bdf8;
-}
-
-.kpay-card{
-background:rgba(255,255,255,0.08);
-border:1px dashed rgba(255,255,255,0.2);
-padding:15px;border-radius:15px;margin-top:15px;text-align:center;
-}
-.kpay-number{color:#facc15;font-size:1.2rem;font-weight:800;letter-spacing:1px;display:block;margin-top:4px;}
 
 .scroll-hide::-webkit-scrollbar{display:none;}
 </style>
@@ -152,21 +121,44 @@ Premium Gaming Hub
 <button onclick="order()" class="place-order-btn text-glow" id="main-btn">PLACE ORDER NOW</button>
 </div>
 
-<div class="h-10"></div>
-
 <script>
-const prices={mlbb:{color:'#0ea5e9',data:[{v:'Weekly Pass (1x)',p:'5500'},{v:'Weekly Pass (2x)',p:'11000'}]}};
+const prices = {
+mlbb:{color:'#0ea5e9',data:[
+{v:'Weekly Pass (1x)',p:'5500'},{v:'Weekly Pass (2x)',p:'11000'},
+{v:'86 Diamonds',p:'4200'},{v:'172 Diamonds',p:'8400'},
+{v:'257 Diamonds',p:'12500'},{v:'344 Diamonds',p:'16800'},
+{v:'429 Diamonds',p:'21000'},{v:'514 Diamonds',p:'25000'},
+{v:'706 Diamonds',p:'34000'},{v:'878 Diamonds',p:'42500'},
+{v:'1050 Diamonds',p:'50000'},{v:'1412 Diamonds',p:'68000'},
+{v:'2195 Diamonds',p:'105000'}]},
+heartopia:{color:'#f43f5e',data:[
+{v:'60 Hearts',p:'1200'},{v:'300 Hearts',p:'5500'},
+{v:'680 Hearts',p:'12000'},{v:'1280 Hearts',p:'22500'},
+{v:'1980 Hearts',p:'34000'},{v:'3280 Hearts',p:'56000'},
+{v:'6480 Hearts',p:'110000'}]},
+pubg:{color:'#10b981',data:[
+{v:'60 UC',p:'3200'},{v:'325 UC',p:'15500'},
+{v:'660 UC',p:'29000'},{v:'1800 UC',p:'75000'},
+{v:'3850 UC',p:'150000'},{v:'8100 UC',p:'285000'}]}
+};
+
 let currentGame='mlbb';
 
 function switchTab(game){
 currentGame=game;
 const themeColor=prices[game].color;
 document.getElementById('main-body').style.backgroundColor=themeColor+'66';
+const list=document.getElementById('price-list');
+const select=document.getElementById('item-select');
+list.innerHTML='';select.innerHTML='';
+prices[game].data.forEach(item=>{
+list.innerHTML+=`<div class="price-row flex justify-between">
+<span>${item.v}</span><span>${item.p} Ks</span></div>`;
+select.innerHTML+=`<option>${item.v} - ${item.p} Ks</option>`;
+});
 }
-
 switchTab('mlbb');
 
-/* LOADER FADE OUT */
 window.addEventListener("load",function(){
 setTimeout(()=>{
 const loader=document.getElementById("loader");
